@@ -52,7 +52,7 @@ class PDFRedactTools(object):
         # convert PDF to PNGs
         print 'Converting PDF to PNGs'
         subprocess.call([ 'convert',
-            '-density', '128',
+            '-density', '300',
             self.pdf_filename,
             '-quality', '100',
             '-sharpen', '0x1.0',
@@ -126,6 +126,9 @@ class PDFRedactTools(object):
         print "Converting PNGs to PDF"
         subprocess.call(['convert',
             os.path.join(self.pages_dirname, 'page-*.png'),
+            '-resize', '3300x2550',
+            '-units', 'PixelsPerInch',
+            '-density', '300',
             self.output_filename])
 
         # strip metadata
